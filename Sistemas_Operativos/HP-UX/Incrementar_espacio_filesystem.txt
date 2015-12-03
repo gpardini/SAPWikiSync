@@ -1,0 +1,47 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T09:43:09-05:00
+
+====== Incrementar espacio filesystem ======
+Created viernes 25 septiembre 2015
+
+/disk_info.sh
+{{./pasted_image001.png?width=601}}
+vgmodify -a -E vgdat4 /dev/rdisk/disk188
+{{./pasted_image002.png}}
+vgdisplay -v vgdat4
+{{./pasted_image004.png?width=305}}
+//##se deben usar valores totales despues del cambio no la cantidad que se va a incrementar://
+lvextend -l 15358 /dev/vgdat4/sapdata4
+~~##15358x16mb =245728~~
+fsadm -F vxfs -b 245728m /oracle/BIP/sapdata4
+{{./pasted_image005.png}}
+
+
+
+====== SAPBIP01# more disk_info.sh ======
+# Listar path1, vendor, modelo, tamaqo GB, wwnid y VG de cada disk. - Carlos Diaz
+LDISK=`ioscan -fnkNC disk|grep /dev/disk |awk '{print $1}'|grep -v _p|cut -d/ -f4`
+SZT=0; bdf > /bdf.txt
+echo "\nDisk\tLegacy\t\tVendor\tModel\tSizeGB\tWWID\t\t\t\tVG"
+for i in $LDISK; do
+  PH=`ioscan -m dsf |grep ''$i' ' |awk '{print $2}' |cut -d / -f 4`
+	  if [ -z "$PH" ]; then PH="vPar_6"; fi
+  VN=`diskinfo /dev/rdisk/$i 2>/dev/null |grep vendor |awk '{print $2}' |cut -c 1-7`
+  PR=`diskinfo /dev/rdisk/$i 2>/dev/null |grep product |awk '{print $3}'|cut -c 1-7`
+  SZ=`diskinfo /dev/rdisk/$i 2>/dev/null |grep size |awk '{print $2}'`
+  if [ $SZ ]; then SZ1=`echo "$SZ/1048576" | bc`; fi
+  SZT=`echo "$SZT+$SZ1" | bc`
+  WW=`scsimgr get_info -D /dev/rdisk/$i |grep WWID |awk '{print $6}'`
+  VG=`pvdisplay /dev/disk/$i 2>/dev/null |grep 'VG Name' |awk '{print $3}'|cut -d/ -f3`
+	  if [ -z "$VG" ]; then k="$i"_p2
+		VG=`pvdisplay /dev/disk/$k 2>/dev/null |grep 'VG Name' |awk '{print $3}'|cut -d/ -f3`
+	  fi
+  US=''; if [ $VG ]; then grep $VG /bdf.txt > /dev/null
+		 if [ $? -eq 0 ]; then US=Used
+		   else swapinfo |grep $VG > /dev/null
+			if [ $? -eq 0 ]; then US=Used
+		 fi;fi;fi
+  echo "$i\t$PH   \t$VN\t$PR\t$SZ1\t$WW\t$VG\t$US"
+done
+echo "\t\t\tTotal size: \t$SZT GB"

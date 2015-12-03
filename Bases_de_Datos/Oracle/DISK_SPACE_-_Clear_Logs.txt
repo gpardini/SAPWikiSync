@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-06T09:15:50-05:00
+
+====== DISK SPACE - Clear Logs ======
+Created viernes 06 noviembre 2015
+
+Over time, many log files and other intermediate files, such as backups on disks, are created. To clean up these logs, use brconnect -f cleanup. This process cleans:
+* Detailed logs of the BR*Tools
+* Disk backups created by BRBACKUP and BRARCHIVE
+* Export dumps and scripts created by BRSPACE
+* Log records and check results in the tables SDBAH, SDBAD, DBA*, and DBMGSGORA
+* Oracle trace and audit files
+Note: Normally, BRCONNECT is started as follows: 
+**brconnect -u -c -f cleanup**

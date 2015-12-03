@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-23T07:56:00-05:00
+
+====== PassChange BRTOOLS ======
+Created lunes 23 noviembre 2015
+
+brconnect -u system/<system password> -f chpass -o SAPSR3 -p <sapsr3 pass>

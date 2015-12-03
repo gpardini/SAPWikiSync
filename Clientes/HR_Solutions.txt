@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-10-08T11:00:43-05:00
+
+====== HR Solutions ======
+Created jueves 08 octubre 2015
+
+===== Seguimiento Septiembre =====
+[*] Recomedaciones informe de Gestion de Septiembre!
+	[*] Verificacion tickets del mes.
+	[*] Verificacion del EWA
+	[*] Verificacion de copias de respaldo del mes.
+	[*] Verificacion de usuarios durante el mes.
+[ ] Reunion de seguimiento.
+[ ] Acta reunion.

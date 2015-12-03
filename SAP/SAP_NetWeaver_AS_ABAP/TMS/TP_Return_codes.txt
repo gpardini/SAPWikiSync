@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-26T11:37:43-05:00
+
+====== TP Return codes ======
+Created jueves 26 noviembre 2015
+
+tp receives return codes from all the transport tools involved in an import process.
+tp's own return code following exit is interpreted as follows:
+* 0 to 16 indicate the maximum value of all return codes from transport tools.
+* 17 to 99 are values that are calculated from the return codes of the transport tools and a tp warning, for example, the buffer of the target system has no write permission.
+* 100 to 199 indicates warnings. Warnings mean that something went wrong and tp could not perform all the tasks. 100 to 149 are normal tp warnings.
+For example, RDDIMPDP cannot be triggered by sapevt. Return codes of 150 to 199 are rare and indicate incorrect operation by a user. For example, a return code of 152 is received if tp tries to import a request that is not included in the buffer.
+* 200 or more indicates tp errors. For example, if a file could not be accessed as required by the import process, the return code is 212.
+The accompanying text is more significant than the value of a return code. To display the text of a specific tp return code, use the tp command tp explain rc <value of return code>.

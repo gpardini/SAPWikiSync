@@ -1,0 +1,111 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T10:10:12-05:00
+
+====== Copia Homogenea [SAP] ======
+Created viernes 25 septiembre 2015
+
+-Este es el proceso de copia homogenea que se realiza solo para instancias ABAP en SAP, las instancias ABAP+JAVA deben realizarce con EXPORT.
+-Antes del proceso de copia homogenea asegurar los puntos en este checklist [[+Checklist Template]] para asegurar que no se presenten problemas con la copia.
+
+==== Verificar las versiones de la DB. ====
+ {{./pasted_image001.png}}
+
+==== Verificar el espacio de la DB, (el destino debe tener más que el origen) ====
+{{./pasted_image003.png}}
+ 
+
+==== <EN CASO DE QUE EL DESTINO Tenga DEV/QAS en la misma instancia> debe guardar el valor del consecutivo de los transportes para poder ponerlo al finalizar la copia, para ver el numero ejecutar este comando: ====
+//dbmcli -d IMD -u control,zxsa1254 -uSQL SAPIMD,zxsa1254//
+//sql_execute select TRKORR from e070L;//
+También puede verlo en la tabla e070L desde la SE16 en SAP.
+
+==== Bajar SAP. ====
+ {{./pasted_image005.png}}
+
+==== Bajar la DB o asegurar que este abajo. ====
+{{./pasted_image006.png}}
+
+==== Hacer el db_reinstall (cuando finaliza la DB queda Online, verificar con db_state) ====
+{{./pasted_image007.png}}
+
+==== Verificar cual es el último backup exitoso en PRD y solicitar el restore del ultimo respaldo del origen sobre el destin ====
+{{./pasted_image010.png}}
+
+==== Esperar a que finalice el restore y revisar el log ====
+{{./pasted_image009.png}}
+9. Resetear LOGS:
+dbmcli -d <NewSID> -u control,<password>
+db_admin
+db_state (para asegurarse de que está en estado ADMIN)
+util_execute clear log
+db_online
+ {{./pasted_image011.png}}
+10. Load system tables (Nota 129352)
+dbmcli -d <NewSID> -u control,<password> load_systab -u superdba,<password, el default es admin> -ud domain
+ {{./pasted_image012.png}}
+11. Ejecutar el renombre de la DB.
+dbmcli -d IMD -u control,zxsa1254 -uSQL superdba,zxsa1254 sql_execute rename user SAPIMP to SAPIMD
+12. Iniciar SAP y bloquear los usuarios(menos el usuario administrador):
+ {{./pasted_image013.png}}
+13. Ejecutar el post installation methods SE06.
+   {{./pasted_image014.png}}{{./pasted_image015.png}}{{./pasted_image016.png}}{{./pasted_image017.png}}
+  
+14. Instalar la nueva licencia por el Slicense(es posible que quede con una temporal).
+15. Configurar el sistema de transportes en la STMS (ingresar con mandante 000)
+16. Modificar el mensaje de entrada(SE61> ZLOGIN_SCREEN_INFO)
+ {{./pasted_image018.png}}{{./pasted_image019.png}}
+ 
+17. Ejecutar SM61 Background controller list. Modificar, botón change botón cleanup list.
+ {{./pasted_image020.png}}
+18. Ejecutar SM65 Analysis tool background processing. Selecciona todos los chulitos, all background servers, boton execute
+  
+{{./pasted_image021.png}}{{./pasted_image022.png}}
+19. En la RZ10 ajustar los perfiles de la instancia:
+19.1.	Borrar los perfiles viejos(primero seleccionar el perfil, darle borrar y decirle que no borre el archivo a nivel de OS):
+   
+ {{./pasted_image023.png}}{{./pasted_image024.png}}{{./pasted_image026.png}}
+19.2.	Importar el perfil de los servidores activos:
+ {{./pasted_image027.png}}
+20. Configurar la nueva base de datos en la DB59.
+20.1.	Borrar las entradas viejas:
+ {{./pasted_image028.png}}{{./pasted_image029.png}}
+ 
+20.2.	Crear la conexión nueva:
+   {{./pasted_image030.png}}{{./pasted_image031.png}}
+21. DB13 checkdb(este paso me congelo la maquina la ultima vez e incrementa mucho el tiempo de la actividad OJO)
+ 
+22. Cambiar el parámetro login/system_client que es el mandante que sale por defecto cuando se abre el sistema acorde a la necesidad.
+23. Reconfigurar las RFC.
+24. Definir con el cliente que JOBS se deben borrar usando el reporte rsbtcdel.
+ {{./pasted_image033.png}}
+25. Cambiar la información del mandante en la scc4(para QAS queda on Client role = Test) y se debe cambiar el nombre del mandante.
+ {{./pasted_image036.png?width=358}}
+
+====== Si DEV/QAS son dos mandantes en el mismo sistema continuar con los siguientes pasos, de lo contrario ya termino la copia homogénea. ======
+
+==== Debe incrementar el consecutivo de las ordenes de transporte para que al liberar nuevas ordenes no se sobreescriban los datas y los cofiles: ====
+
+== Con los siguientes 2 comandos se puede ver en que consecutivo va: ==
+dbmcli -d IMD -u control,zxsa1254 -uSQL SAPIMD,zxsa1254
+sql_execute select TRKORR from e070L;
+
+== Con los siguientes 2 comandos se ajusta(IMPORTANTE debe ejecutarlos seguido el uno del otro): ==
+dbmcli -d IMD -u control,zxsa1254 -uSQL SAPIMD,zxsa1254
+sql_execute update E070L set TRKORR='IMDK910001' where LASTNUM='TRKORR'
+ {{./pasted_image037.png?width=696}}
+
+=== Crear el nuevo mandante donde va a quedar desarrollo en la SCC4: ===
+Click en modificar y luego Entradas Nuevas.
+{{./pasted_image038.png}}
+Llenar los valores y guardar.
+{{./pasted_image040.png?width=420}}
+
+==== Copia de Mandante Local para crear el mandante de desarrollo, en este caso 100( SCCL para iniciar la copia desde el mandante destino y SCC3 para hacerle seguimiento) ====
+{{./pasted_image041.png}}SCCL
+{{./pasted_image042.png}}SCC3
+
+
+
+===== otras guias: =====
+[[./Copia Homogenea maxdb dataprotector.pdf]] 

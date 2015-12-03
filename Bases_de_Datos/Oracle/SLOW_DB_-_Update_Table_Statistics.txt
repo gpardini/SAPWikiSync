@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-06T09:03:07-05:00
+
+====== SLOW DB - Update Table Statistics ======
+Created viernes 06 noviembre 2015
+
+Oracle para dar buenos tiempos de respuesta en sus consultas usa el Cost-base Optimizer, que requiere de las estadisticas que se almacenan sobre las tablas en el tablespace system.
+si estas estadisticas no se encuentran al dia e tiempo de respuesta de las consultas sobre las tablas se ve comprometido, en especial las tablas grandes.
+
+la herramienta de br*tools BRCONNECT permite realizar la actualizacion de las estadisticas de todas las tablas con el siguiente comando>
+**brconnect -u -c -f stats -t all**
+los logs generados por brconnect a nivel de OS para esta actividad pueden encontrarse en $SAPDATA_HOME/sapcheck (UNIX) o %SAPDATA_HOME%\sapcheck (Windows)
+este debe ejecutarse una ves por semana segun a recomendacion de SAP y puede programarse por la DBA cockpit.

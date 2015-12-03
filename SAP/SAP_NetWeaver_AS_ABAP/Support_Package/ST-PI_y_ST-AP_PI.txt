@@ -1,0 +1,49 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T13:00:45-05:00
+
+====== ST-PI y ST-AP PI ======
+Created viernes 25 septiembre 2015
+Toda la documentacion y los vinculos a las descargas se pueden encontrar en:
+https://support.sap.com/supporttools
+
+===== Ya descargados: =====
+
+==== ST-A/PI 01R_700 ====
+[[./KITAB7N.SAR]] Nivel01
+[[./KITAB7P.SAR]] Nivel02
+
+
+===== Subir Nivel: =====
+
+
+===== Subir el Release: =====
+Para subir el release se debe usar la transaccion **SAINT** en lugar de la SPAM. 
+en este ejemplo iniciamos con la version 01Q_700 y queremos subirla a 01R_700 como vera a continuacion:
+{{./pasted_image002.png}}
+
+Primero hay que cargar el archivo de la actualizacion ya se adel frontend o del appserver.
+{{./pasted_image004.png}}
+
+Despues le damos start y seleccionamos el update:
+{{./pasted_image005.png}}
+
+luego le damos continuar, hasta que nos salga el siguiente mensaje:
+{{./pasted_image006.png}}
+
+ahi le damos que no. Nos va a indicar una nota que debemos leer relacionada al packete de instalacion si no conocemos el proceso es bueno leera.
+despues de pasar este paso sale un listado de ordenes que pueden afectar el proceso, en el caso de st-pi y st-a/pi es un namespace aparte por lo cual le damos SKIP.
+{{./pasted_image008.png}}
+
+Cuando finalize el proceso darle FINISH {{./pasted_image009.png}}. y el release queda actualizado:
+{{./pasted_image010.png}}
+
+
+====== Tickets Relacionados al tema: ======
+2000035172- Agroriocas
+Niveles Iniciales:
+ST-PI	2008_1_700	0009	SAPKITLRD9	SAP Solution Tools Plug-In
+ST-A/PI	01Q_700	0002	SAPKITAB7L	Servicetools for other App./Netweaver 04
+Niveles requeridos:
+{{./pasted_image001.png}}
+

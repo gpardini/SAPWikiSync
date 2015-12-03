@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T12:40:39-05:00
+
+====== Checklist Template ======
+Created viernes 25 septiembre 2015
+
+===== Ticket:XXXXXXX =====
+
+[ ] Informar al cliente de los riesgos de la copia:
+	[ ] el cliente debe hacerse responsable de la perdida de informacion que pueda causarse por la copia.
+	[ ] Recomendar al cliente que no usen el sistema origen durante la actividad para evitar inconsistencias.
+[ ] Configurar la RFC entre el origen y el destino.
+[ ] Ejecutar el RFC System Comparison y asegurar que pase sin problemas.
+[ ] Programar la ejecucion de la copia.
+[ ] Solicitar backup de logs mas frecuentes, para asegurar que no se llene el disco.

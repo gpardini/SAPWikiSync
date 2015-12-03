@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-12-02T11:45:11-05:00
+
+====== Solman Managed System Configuration ======
+Created miércoles 02 diciembre 2015
+es un wizard que se usa desde la transaccion SM_WORKCENTER en solman para realizar la conexion entre Solman y un sistema satelite(Managed System).
+para llegar al wizard siga los siguientes pantallazos.
+
+{{./pasted_image.png}}
+
+
+===== Common problems =====
+en esta seccion vera una recopilacion de problemas comunes que pueden presentarse durante la ejecucion del wizard, con su componente y el paso donde se presenta.
+
+=== [SAP Host Agent Status]<Step 4 Assign Diagnostic Agent> Error to perform http request cause by java.io.IOException ===
+
+El siguiente error se soluciona con upgrade del saphostagent
+
+{{./pasted_image001.png}}
+{{./pasted_image002.png}}
+
+
+
+

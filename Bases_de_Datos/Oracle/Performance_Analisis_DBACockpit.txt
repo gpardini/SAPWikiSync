@@ -1,0 +1,40 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-25T20:36:00-05:00
+
+====== Performance Analisis DBACockpit ======
+Created miércoles 25 noviembre 2015
+
+
+===== Use the Performance Overview Monitor on DBACockpit to Check =====
+* **The data buffer quality** is based on the ratio of physical reads to the total
+number of reads. The lower the ratio, the better the buffer quality. The data
+buffer quality should be better than 94,0%; the statistics should be based on
+15 million total reads. This number of reads ensures that the database is in a
+state of equilibrium.
+* Good performance is indicated by a ratio of user and recursive calls that
+is greater than 2. Otherwise, the number of recursive calls compared to
+the number of user calls is too high. Over time, this ratio always declines
+because more and more SQL statements are parsed in the meantime.
+* If the number of reads per user call exceeds 30 blocks per user call, this
+might indicate an expensive SQL statement.
+* Check the value of time/user call. Values larger than 15 ms often indicate
+an optimization issue.
+* Compare busy wait time versus CPU time. A ratio of 60:40 generally
+indicates a well-tuned system. Significantly higher values (for example,
+80:20) indicate room for improvement.
+* The DD cache quality should be better than 80%
+
+===== Use SUB-Monitors to check SQL Statements =====
+sub-monitors in the DBA Cockpit help you analyze SQL statements.
+
+==== Filesystem Requests (Improve disk I/O) ====
+Data file activity has an effect on database performance. This view helps you to identify the frequently used data files and put them on separate disks to avoid
+contention, if necessary.
+
+==== Lock Monitor (Identify DB Deadlocks) ====
+This monitors currently active locks.
+
+==== System Event History (Identify DB actions that might impact performance) ====
+Gives you an overview of the history of system events of the Oracle instance(s).
+

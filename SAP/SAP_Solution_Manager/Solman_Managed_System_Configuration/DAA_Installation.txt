@@ -1,0 +1,62 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-12-01T13:54:20-05:00
+
+====== DAA Installation ======
+Created martes 01 diciembre 2015
+SAP Note 1365123 - Installation of Diagnostics Agents - Version 50
+SAP Note 1833501 - Diagnostics Agent - Installer Versions - Vesion 38
+
+===== DAA Installation =====
+-Usar la ultima version posible del SWPM en este caso SP9.
+-Usar kernet 7.21ext unicode para el OS correspondiente, **el kernel del DAA es completamente independiente de la instancia**.
+1. Ejecutar sapinst.exe del SWPM
+2. Seleccionar la opcion:
+	a. {{./pasted_image.png}}
+3. Defina el Hostname, por lo general se deja el que sale por defecto
+	a. {{./pasted_image001.png}}
+4. Indique el Kernel a usar (7.21ext for installation **OJO es diferente al que se usa para updates**)
+	a. {{./pasted_image004.png}}
+	b. {{./pasted_image003.png?width=306}}
+5. Defina el SID para la instancia, por defecto manejamos el standard "DAA" y la unidad es la misma donde estan las carpetas de la isntancia SAP.
+	a. {{./pasted_image005.png}}
+6. Use la opcion por defecto LocalDomain.
+	a. {{./pasted_image006.png}}
+7. inserte las claves de daaadm y SAPServiceDAA(Windows):
+	a. {{./pasted_image007.png}}
+8. Elegir el numero de instancia, debe ser menor a 99 y no puede ser igual a una instancia existente.
+	a. {{./pasted_image008.png}}
+9. Seleccione la opcion Registrar en un SLD.
+	a. {{./pasted_image009.png}}
+10. Indique la informacion para conectar con el SLD.
+	a. Host<solman.grupocnet.com> 
+	b. port<8000>
+	c. user<SLDDSUSER>
+	d. password<zxsa1254>
+	e. {{./pasted_image010.png}}
+11. Seleccione la conexion al solman
+	a. {{./pasted_image011.png}}
+12. configure la conexion al solman:
+	a. Host<solman.grupocnet.com> 
+	b. Port<8101>
+	c. User<SMD_ADMIN>
+	d. Pass<ZXSA1254>
+	e. {{./pasted_image012.png}} 
+	f.Si le da error de usuario y clave verifique en el solman que no este bloqueado el usuario 
+13. darle continuar para que descomprima algunos archivos necesarios:
+	a. {{./pasted_image013.png}}
+14. Darle confirmar parametros y la instalacion procede hasta terminar.
+	a. {{./pasted_image014.png?width=644}}
+
+
+===== Check DAA Logs =====
+Open the agent logs located at i.e.: /usr/sap/DAA/SMDA97/SMDAgent/log
+
+	SMDSystem.X.log shows information about the agent connection to the Managing System
+	SMDAgentApplication.X.log shows information about the applications running in the agent, such as Wilyhost agent and SAP Host Agent connections
+	e2edcc_host.*.log shows information about Host Discovery
+	e2edcc_host.*.log shows information about Database Discovery
+	e2edcc_iis.*.log shows information about IIS Discovery
+
+Look for any error or warning message in these logs. Search for a solution in this wiki page and also on SAP notes, KBAs and Wikis. If you cannot find the answer, please open a CSS ticket.
+

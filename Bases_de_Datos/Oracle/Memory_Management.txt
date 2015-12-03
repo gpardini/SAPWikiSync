@@ -1,0 +1,37 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-24T23:02:23-05:00
+
+====== Memory Management ======
+Created martes 24 noviembre 2015
+
+==== Manual SGA(DB_BLOCK_BUFFERS set) ====
+* Disable Automatic memory management and control manually the size of each SGA subcomponent.
+* Use **DB_BLOCK_BUFFERS**, the value of this parameter must be set in blocks.
+* **SGA_MAX_SIZE** is not required is defined by the sum of the components.
+
+==== Dynamic SGA (DB_CACHE_SIZE Set) ====
+* Buffer areas on SGA can be changed dynamically, no restart required.
+* Buffer cache advisor: allows to predict outcomes of size changes to buffer cache.
+* **SGA_MAX_SIZE** and **LOG_BUFFER** are **FIXED**, need restart to change.
+* Setting DB_CACHE_SIZE enables dynamic SGA.
+* Don’t use DB_BLOCK_BUFFERS, BUFFER_POOL_KEEP, BUFFER_POOL_RECYCLE in this config or an error will occur.
+* Redistribution of subcomponent sizes is MANUAL.
+
+==== Automatic Shared Memory Management (auto-sga) ====
+* SGA_TARGET is the main parameter that has to be sert for auto-sga to be active. This parameter can be set instead of the others, even DB_CACHE_SIZE.
+* When active DB_CACHE_SIZE and SHARED_POOL_SIZE now specify lower limits.
+* **SGA_MAX_SIZE is still used, since SGA_Target is not the maximum just the value you expect the oracle db to achieve.**
+
+
+==== Parameter Detail ====
+**SGA_MAX_SIZE** = Upper limit of SGA.
+**DB_CACHE_SIZE**= when using dynamic SGA, size of the DB Buffer cache. <= SGA_MAX_SIZE
+**DB_BLOCK_BUFFERS** = when using manual SGA, size of the DB Buffer cache.
+**LOG_BUFFER**= size of the Log Buffer (perfect in 1MB don’t exceed or performance issues may happen), FIXED for dynamic SGA.
+**SHARED_POOL_SIZE**= Max size of shared pool (At least 400MB notes: 618868 and 690241 don exceed recommendations in note 690241). <= SGA_MAX_SIZE
+**JAVA_POOL_SIZE**=0 (not used by sap)
+**STREAMS_POOL_SIZE**=(use in 0, unless using oracle datapump)
+**PGA_AGGREGATE_TARGET**=for PGA max memory when configured automatic. Its dynamic(no restart to change), 10M< PGA_AGGREGATE_TARGET <4096G -1 , Old manual parameters are IGNORED when set.
+**WORKAREA_SIZE_POLICY**=AUTO to set automatic memory allocation for PGA
+**TOTAL MAX ORACLE MEMORY**= when all is automatic is PGA_AGGREGATE_TARGET + SGA_MAX_SIZE

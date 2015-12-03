@@ -1,0 +1,54 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-28T10:46:40-05:00
+
+====== GEMR(Lagosur) ======
+Created lunes 28 septiembre 2015
+
+===== Contacto Principal =====
+**Nombre>** Zoraya Roa
+**Skype>** zoaraya.roa
+**Ciudad>** Bogota
+**Cargo>** VP Accountant
+**Cel>** 310 2440411
+**Tel>** 629 2230 Ext 109
+**Mail**> zroa@globalenergyplc.com
+**Datacenter**>BT
+
+===== Seguimiento Septiembre =====
+fecha de la reunion 16/10/2015 10:00 a.m
+
+[*] Recomedaciones informe de Gestion de Septiembre!
+	[*] Verificacion tickets del mes.
+	[*] Verificacion del EWA
+	[*] Verificacion de copias de respaldo del mes.
+	[*] Verificacion de usuarios durante el mes.
+[*] Reunion de seguimiento.
+[*] Acta de reunion.
+
+
+===== Seguimiento Octubre =====
+fecha de la reunion 24/11/2015 10:30 a.m
+
+[*] Recomedaciones informe de Gestion de Septiembre!
+	[*] Verificacion tickets del mes.
+	[*] Verificacion del EWA
+	[*] Verificacion de copias de respaldo del mes.
+	[*] Verificacion de usuarios durante el mes.
+[*] Reunion de seguimiento.
+[*] Acta de reunion.
+
+=== Actividades acordadas ===
+[ ] TODO: Se acordo Actualizacion de Kernel, 2000037959.
+
+===== Seguimiento Noviembre =====
+fecha de la reunion xx/xx/2015 xx:xx x.x
+
+[ ] Recomedaciones informe de Gestion de Septiembre!
+	[ ] Verificacion tickets del mes.
+	[ ] Verificacion del EWA
+	[ ] Verificacion de copias de respaldo del mes.
+	[ ] Verificacion de usuarios durante el mes.
+[ ] Reunion de seguimiento.
+[ ] Acta de reunion.
+

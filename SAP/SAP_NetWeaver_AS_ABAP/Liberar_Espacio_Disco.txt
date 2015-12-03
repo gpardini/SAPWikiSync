@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-25T07:37:30-05:00
+
+====== Liberar Espacio Disco ======
+Created miércoles 25 noviembre 2015
+
+==== Limpiar Ordenes de transporte Viejas ====
+ejecutar:
+tp check all pf=\<profilepath>\profile
+tp clearold all pf=\<profilepath>\profile
+hay que investigar mas este tema, esta en los manuales de sap 12-2
+
+==== Limpiar versiones viejas de kernel ====
+borrar carpetas como exe.old si llevan mucho tiempo.
+se encuentran en
+* /usr/sap/<SID>/<DVE... or SYS>/...
+* /sapmnt
+
+==== Limpiar logs de jobs ====
+en la carpeta global, hay que investigar mas este tema:
+D:\usr\sap\ION\SYS\global

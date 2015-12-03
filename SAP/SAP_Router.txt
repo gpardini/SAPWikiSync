@@ -1,0 +1,79 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-10-07T15:20:14-05:00
+
+====== SAP Router ======
+Created miércoles 07 octubre 2015
+El saprouter es una herramienta que se utiliza como dice el nombre para enrrutar el trafico del sapgui hacia una instancia ABAP por medio de una maquina intermedia.
+En compunet se utiliza para que con una ip publica se puedan conectar los clientes a los servidores sin exponerlos directamente al internet y se configuran teniento en cuenta los siguientes lineamientos:
+
+===== Lineamientos SAP Routers Compunet =====
+* Se configura un servicio independiente por cada cliente por cada datacenter. Ejemplos:
+	* Es decir si el cliente tiene todas sus instancias en BT se crea un unico servicio en el saprouter para todos sus sistemas.
+	* Si el cliente tiene sus instancias en Triara y dos CRD en Cali. Se crea un saprouter para todos los sistemas en Triara y uno para todos sus CRD
+* Se deben documentar todos los cambios en \\cncd\privada\Operaciones\Basis\Sap router\ResumenSapRouter.xlsx
+	* hay una pestaña para las cadenas con servicio en BT, otra en Triara, en Cali y otra para los clientes con saprouter propio.
+	* debe registrar una cadena por fila acorde a los titulos definidos.
+* Algunos clientes tienen sus propios saprouters contratados donde se registran todos sus sistemas y no se usan IP NAT, en su lugar debe usar IPS del cliente.
+* Este pendiente de las observaciones antes de suministrar el SAPRouter a un cliente o hacer un cambio.
+* A los clientes se les debe suministrar la cadena con saprouter con el **nombre de dominio** y nunca con la IP publica. Internamente en compunet se usan los saprouters con la IP al descubierto. <los saprouters propios del cliente no tienen dominio>
+
+==== Ubicacion SAP Routers ====
+
+== Cali(principalmente para los CRD): ==
+falta la info de conexion aqui
+
+== BT: ==
+falta la info de conexion aqui
+
+== Triara: ==
+falta la info de conexion aqui
+
+====== Procedimiento para crear un nuevo SAPRouter ======
+
+identificar un puerto libre en el servidor en cuestion con el CMD y el comando 
+for /F "usebackq tokens=2,3,4,5,6,7 delims=: " %g in (`netstat -nao ^| find "LISTENING"`) do @for /F "usebackq skip=2 tokens=1,2" %m IN (`tasklist`) do @if %l == %n @echo %h %m
+{{./pasted_image.png?width=450}}
+
+con el puerto y la IP claro puede definir una nueva cadena de saprouter tentativa:
+en este caso tomaremos el puerto **3269** y generamos una clave en https://strongpasswordgenerator.com/ para este caso sera **+t#z6%7Y.**
+{{./pasted_image001.png}}
+
+como este ejemplo es para un SAPRouter en Cali(CRD) se agregan estos dos datos a la cadena para formar una tentativa:
+**/H/srcrd.grupocnet.com/S/3269/W/+t#z6%7Y/H/**
+con este dato claro podemos proceder a generar el servicio, para iniciar debemos crear una copia de la carpeta saprouter.INICIAL que veremos en cada uno de los servidores de saprouter y ponerle el nombre del nuevo router.
+{{./pasted_image002.png}}
+
+despues de copiarlo debemos abrir un CMD como administrador, ubicarse en la carpeta que acaba de crear, ejecutar estos comandos reemplazando el puerto, la el nombre de la empresa y la ruta de ser necesario. Para este ejemplo estos son los datos y como quedarian los comandos (en verde los datos de este ejemplo y en negrilla lo que debe cambiar):
+
+== RutaCarpeta=C:\usr\sap\saprouter.BOSTON ==
+
+== Puerto=3269 ==
+
+== NombreCliente=BOSTON ==
+
+
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Application\saprouter.**BOSTON**
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Application\saprouter.**BOSTON** /v EventMessageFile /t REG_SZ /d **C:\usr\sap\saprouter.BOSTON\**sapevents.dll
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Application\saprouter.**BOSTON** /v TypesSupported /t REG_DWORD /d 0x7
+sc.exe create saprouter.**BOSTON** binPath= "**C:\usr\sap\saprouter.BOSTON**\saprouter.exe service -r -W 100000 -S **3269** -C 200 -R **C:\usr\sap\saprouter.BOSTON\**saprouttab -G **C:\usr\sap\saprouter.BOSTON**\dev_rout" start= auto obj= "NT AUTHORITY\LocalService"
+
+{{./pasted_image003.png}}
+
+despues de esto aparce el servicio y debe hacer la siguiente configuracion(click derecho propiedades) antes de iniciarlo
+{{./pasted_image005.png}}
+
+despues configurar el archivo saproutab con notepad de la siguiente forma:
+{{./pasted_image004.png}}
+
+Rojo> un comentario con el saprouter como referencia
+Azul> es la IP del servidor destino, (siempre probarla con un ping desde el saprouter)
+Verde> es la contraseña.
+si requiere agregar mas de un sistema debe copiar la linea donde esta la ip y la clave y pegarla abajo de manera consecutiva. Si requiere ejemplos vea alguno de los saprouters ya creados.
+puede agregar tantos comentarios considere para facilitar identificar los sistemas, siempre es conveniente al menos marcar cuales son prd, qas y dev.
+
+al finalizar iniciar el servicio y probar la conectividad.
+
+
+
+

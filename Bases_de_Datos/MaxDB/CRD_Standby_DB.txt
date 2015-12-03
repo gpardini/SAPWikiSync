@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-28T07:27:48-05:00
+
+====== CRD Standby DB ======
+Created lunes 28 septiembre 2015
+
+#!/bin/bash
+
+#get lost of logs with correspondig pages
+dbmcli -n cenprd -d CEP -u control,wsxc8523 backup_history_list -Inverted -c LABEL,FIRSTLOG,LASTLOG | grep LOG_ | tr -d '[:blank:]'  > PRDPages.log
+
+#get
+dbmcli -d CEP -u control,wsxc8523 db_restartinfo | grep Used | tr -d '[:alpha:]' | tr -d '[:blank:]'
+
+
+

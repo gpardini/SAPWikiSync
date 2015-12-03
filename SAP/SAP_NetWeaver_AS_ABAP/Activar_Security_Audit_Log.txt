@@ -1,0 +1,39 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-10-07T15:09:01-05:00
+
+====== Activar Security Audit Log ======
+Created miércoles 07 octubre 2015
+
+====== Procedimiento ======
+En la transaccion **RZ10 **habilitar el parametro rsau/enable cambiandolo a 1. (**rsau/enable = 1**)
+{{./pasted_image001.png}}
+en la transaccion **SM19** habilitar los filtros que determinan que actividades se registran y cuales no.
+{{./pasted_image.png?width=418}}
+configurar en la parte baja de la pantalla los filtros y activarlos con la antorcha(marcada en rojo).
+
+====== Parametros Relacionados ======
+
+== rsau/enable ==
+Activates the audit log on an application server.
+**Valor por defecto=**0 (audit log is not activated)
+
+== rsau/local/file ==
+Specifies the location of the audit log on the application server.
+**valor por defecto=**/usr/sap/<SID>/<instno>/log/audit_<SAP_instance_number>
+
+== rsau/max_diskspace_local ==
+Specifies the maximum length of the audit log.
+**valor por defecto=**1,000,000 bytes
+
+== rsau/selection_slots ==
+Specifies the number of selection slots for the audit.
+**Valor por defecto=**2
+
+====== Referencias ======
+
+== Informacion General ==
+https://help.sap.com/saphelp_nw70ehp2/helpdata/en/c7/69bcb7f36611d3a6510000e835363f/content.htm
+
+== Filtros de ejemplo ==
+https://help.sap.com/saphelp_nw70ehp2/helpdata/en/6c/57bf393b57ac22e10000000a11402f/content.htm

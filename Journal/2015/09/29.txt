@@ -1,0 +1,62 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-29T06:00:21-05:00
+
+====== martes 29 sep. 2015 ======
+Turno: Madrugador.
+
+====== Turnos: ======
+{{./pasted_image001.png}}
+
+
+====== Tickets Nuevos: ======
+
+== 1000012894, MIS-Bitácora Basis- CRD - Mansarovar ==
+2015-09-29 06:00:16.20	*** Error: The restore operation cannot proceed because the secondary database 'MNP' is not in NORECOVERY/STANDBY mode.(Microsoft.SqlServer.Management.LogShipping) ***
+El problema se evidencia desde ayer a las 3:45, posiblemente inicio antes.
+2015-09-29 03:45:16.37	***** Error: The restore operation cannot proceed because the secondary database 'MNP' is not in NORECOVERY/STANDBY mode.(Microsoft.SqlServer.Management.LogShipping) *****
+
+ayer hicieron prueba de activacion y esta pendiente de reconstruccion.
+
+== 1000012893, MIS-Bitácora Basis- CRD - MAYAGUEZ ==
+ORA-00308: cannot open archived log
+'/oracle/MAP/oraarch/MAParch1_130301_767576072.dbf'
+ORA-27037: unable to obtain file status
+HPUX-ia64 Error: 2: No such file or directory
+Additional information: 3
+se creo el caso 2000035316 para solicitar el log.
+
+== 1000012892, MIS-Bitácora Basis- CRD - OLEOFLORES ==
+Saludos,
+va en el 17862 y se encuentra avanzando.
+en este momento esta al dia.
+
+== 1000012897, Free Space is low - sapp - Ingenio Risaralda PRD: ==
+Se habia llenado la unidad de archives, se contacto telefonicamente a Gloria y se le envio un ticket para que nos ayude con el tema.
+
+== 2000035370, Sad Diseño auditoria: Mandantes SAP - Propilco: ==
+se envia la informacion reelevante.
+
+== 2000035366, ACCESO WEB A SAP - etafashion: ==
+habilitar la soamanger.
+
+== 2000035372, Validar la aplicación de una nota - archies: ==
+Se valida y la nota no es aplicable.
+
+
+====== Tickets de dias previos: ======
+
+== 1000012389, MIS-Bitácora Basis- CRD - Centelsa: ==
+se encuentra atrasado muchos logs. 
+se pidio cinta.
+[*] estar pendiente CINTA CENTELSA.
+
+== 1000012777, retardos en ejecucion de los jobs - Empresa De Licores De Cundinamarca : ==
+toco montar la carpeta nuevamente.
+mount CUNDISRV205:/usr/sap/trans /usr/sap/trans
+
+====== Solicitudes sin Ticket: ======
+
+[*] enviar correo a Jairo Garcia con fecha tentativa para el examen de certificacion.
+
+

@@ -1,0 +1,84 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-30T06:34:27-05:00
+
+====== miércoles 30 sep. 2015 ======
+Turno: Madrugador.
+
+====== Turnos: ======
+
+
+David Miranda pasará al área de Proyectos (Andrés Suárez), en los próximos días.
+Jaime Hincapié retornará al área de Operaciones a partir del 13/Oct.
+
+====== Tickets Nuevos ======
+
+== 1000012906, MIS Bitacora Basis - Analisis Critico - Getronics: ==
+se hace shrink a las unidades de log.
+
+===== EWAS =====
+
+== CarvalERP ==
+este se encuentra en ejecucion:
+{{./pasted_image.png}}
+
+== clever ==
+{{./pasted_image001.png}}
+
+== conconcreto ==
+el de conconcreto deben descargarlo del solman de ellos SID SCC.
+{{./pasted_image003.png}}
+{{./pasted_image002.png}}
+
+== mayaguez ==
+{{./pasted_image004.png}}
+
+== superBW ==
+{{./pasted_image005.png}}
+
+== IMEC ==
+Este se encuentra en ejecucion:
+{{./pasted_image006.png}}
+
+== Avefarma ==
+{{./pasted_image007.png}}
+
+== Azurita ==
+Julieth!
+
+== CGA ==
+{{./pasted_image008.png}}
+
+== Intergrupo ==
+{{./pasted_image010.png}}
+
+== Microplast ( BW ) ==
+BW no esta con hosting en CNET.
+
+== Ramo ==
+deben descargarlo del SOLMAN de ellos SID SOL
+{{./pasted_image009.png}}
+
+
+
+====== Tickets de dias previos ======
+
+== 1000012389, preparacion DB para restore - centelsa: ==
+la cinta se entrego en la recepcion de bogota estamos a la espera de su llegada a CALI.
+[*] estar pendiente CINTA CENTELSA.
+se prepara la DB para restore.
+
+== 1000012892, MIS-Bitácora Basis- CRD - OLEOFLORES: ==
+se encuentra al dia.
+
+== 2000035370, Sad Diseño auditoria: Mandantes SAP - propilco: ==
+fanny solicita informacion adicional que se le facilita de forma inmediata.
+
+== 2000035072, Password default-compunet: ==
+[*] claves de usuarios standard compunet.
+
+
+====== Solicitudes sin Ticket ======
+
+[*] pendiente poner al dia las OT.
+

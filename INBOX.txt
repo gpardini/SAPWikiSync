@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-29T13:00:10-05:00
+
+====== INBOX ======
+Created martes 29 septiembre 2015
+
+[ ] TODO: Pasar procedimientos a la MIS.
+	segun instrucciones de Jairo entre Julieth, James y yo debemos documentar 5 procedimientos nuevos.
+	[*] instalacion licencia (Julieth tiene la Documentacion) [[./Casos de Expiración de Licencia.docx]] 
+	[*] al11>integracion carpetas compartidas (WINDOWS ). [[./Recurso compartido Windows.docx]] 
+	[*] ewas reprogramar las tareas.  [[./Antes de escalar un EWA a basis verificar la ejecución de las tareas de los EWAS.docx]] 
+	[ ] reinicios(solicitados por basis o por clientes)
+	[ ] cambios de parametros, ejecutor.
+	[ ] CRD
+
+
+
+
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh |

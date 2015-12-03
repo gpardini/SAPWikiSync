@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-13T11:33:12-05:00
+
+====== Client Size ======
+Created viernes 13 noviembre 2015
+
+ejecutando el reporte RSSPACECHECK, se puede saber el tamano de un mandante.

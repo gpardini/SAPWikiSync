@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-10-07T18:07:08-05:00
+
+====== Checklist Template ======
+Created miércoles 07 octubre 2015
+
+[ ] Verificar en que servidor se debe crear el servicio: ¿es saprouter propio?
+[ ] Verificar Los puertos libres con el comando.
+[ ] Verificar adicionalmente el puerto con los archivos de documentacion.
+[ ] Generar la contraseña https://strongpasswordgenerator.com/.
+[ ] Documentar el nuevo saprouter tentativo con el puerto y la nueva clave en el EXCEL.
+[ ] Copiar la carpeta inicial y ponerle un nombre en Mayuscula a la carpeta.
+[ ] Modificar los strings de creacion y ejecutarlos. Son 4 nombres(mayusculas), 4 rutas y 1 puerto.
+[ ] Modificar el saproutab, documentando el string completo.
+[ ] Configurar el servicio y ejecutarlo.
+[ ] Realizar pruebas de conexion.

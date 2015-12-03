@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-25T18:54:07-05:00
+
+====== Limpiar Spool ======
+Created miércoles 25 noviembre 2015
+48284: System can no longer create spool requests
+
+===== Spool Clean =====
+to delete old spool request use or schedule(with variant) the following report.
+**SE38>RSPO1041**
+//More information on this report SAP Note 130978//
+
+===== Consistency Check =====
+to check the consistency of the spool DB use or schedule(with variant) the following report.
+**SE38>RSPO1043**
+//More information on this report SAP Note 98065//
+
+

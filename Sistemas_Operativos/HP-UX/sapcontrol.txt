@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-25T21:39:24-05:00
+
+====== sapcontrol ======
+Created miércoles 25 noviembre 2015
+
+===== check status of sap instance components =====
+**sapcontrol -prot NI_HTTP -nr 00 -function GetProcessList**
+**sapcontrol -prot NI_HTTP -nr 01 -function GetProcessList**
+
+EJEMPLO:
+jgbdev:jgqadm 2> sapcontrol -prot NI_HTTP -nr 00 -function GetProcessList
+
+25.11.2015 21:40:18
+GetProcessList
+OK
+name, description, dispstatus, textstatus, starttime, elapsedtime, pid
+msg_server, MessageServer, GREEN, Running, 2015 11 22 00:14:12, 93:26:06, 7949
+disp+work, Dispatcher, GREEN, Running, Message Server connection ok, Dialog Queue time: 0.00 sec, 2015 11 22 00:14:12, 93:26:06, 7950
+igswd_mt, IGS Watchdog, GREEN, Running, 2015 11 22 00:14:12, 93:26:06, 7953
+rslgcoll, Central Syslog Collector, GRAY, Stopped, , , 7951
+rslgsend, Central Syslog Sender, GRAY, Stopped, , , 7952

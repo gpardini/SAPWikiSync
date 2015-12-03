@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-29T13:23:18-05:00
+
+====== Habilitar SOAManager ======
+Created martes 29 septiembre 2015
+Nota:
+[[./1936501 - Transaction SOAMANAGER does not work.pdf]] 
+
+SMICM
+verificar que el icm se encuentre activo:
+{{./pasted_image001.png}}
+
+{{./pasted_image002.png}}
+{{./pasted_image003.png}}
+
+en la SCIF habilitar el servicio /sap/bc/webdynpro/sap/APPL_SOAP_MANAGEMENT
+
+

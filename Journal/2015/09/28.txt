@@ -1,0 +1,62 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-28T06:06:19-05:00
+
+====== lunes 28 sep. 2015 ======
+Turno: Madrugador.
+
+====== Turnos: ======
+{{./pasted_image002.png}}
+
+-Jose Pedrasa
+-Carlos Viteri
+-Claudia Urdinola.
+-David Miranda
+
+
+
+====== Tickets Nuevos: ======
+
+== 1000012879, MIS Bitacora Basis - Etafashion ETQ Down 28.09.2015 (enOT) ==
+ya se encuentra disponible, no se realizaron cambios sobre el sistema por lo cual seguramente se encontraba en backup. En el alert se ve que la base de datos subio a las 6:28 y bajo el dia de ayer:
+{{./pasted_image.png}}
+
+== 1000012880, MIS-Bitácora Basis- Portales - Super de alimentos supbwp:(enOT) ==
+se subio la instancia sin problemas, al parecer la dejaron abajo despues de una actividad sobre la maquina.
+
+== 1000012389, MIS-Bitácora Basis- CRD - Centelsa: ==
+se encuentra atrasado muchos logs. 
+Used Logpage CRD: 926859711
+{{./pasted_image001.png}}
+23621
+se pidio cinta.
+
+== 1000012883, Alert: Logical Disk Free Space is low ==
+Disco lleno Haceb, https://grupocnet.jiveon.com/thread/4702:
+Se borro un backup viejo.
+[*] Informar a Daniel Ospina que verifique el script de backups de SOLMAN DEV HACEB por que se esta llenando el disco.
+
+
+====== Tickets de dias previos: ======
+
+== 2000034867, Programa Copia del mandante 300 a 250 - Mansarovar Energy Colombia Ltda. :(OTOK) ==
+Finalizo la copia de mandante exitosamente y se le da la respuesta al cliente. 
+
+== 1000012777, retardos en ejecucion de los jobs - Empresa De Licores De Cundinamarca : ==
+se eliminan todos los jobs y se reprograman los jobs estandar.
+
+== 2000034772, CENTELSA: Actualización Kernel - Cables de Energia y : ==
+se preparo la carpeta. Claudia va a realizar el cambio por la noche.
+[*] Preparar Carpetas Kernel Centelsa QAS.
+
+== 2000034751, Alerta SAPBIP - Prebel S.A.: ==
+se ajusto el espacio en disco de sapdata4 acorde a lo aprendido de Carlos Diaz.
+
+== 2000035256, Dar acceso a unidad de red - Ceramica Italia: ==
+falto informacion, intente contactar a la usuario por telefono pero no fue posible por lo que dejo el caso en accion del cliente.
+
+
+
+====== Solicitudes sin Ticket: ======
+ninguna.
+

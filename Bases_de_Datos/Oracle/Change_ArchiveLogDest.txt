@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-23T20:04:33-05:00
+
+====== Change ArchiveLogDest ======
+Created lunes 23 noviembre 2015
+
+=== commando ===
+brspace -c force -f dbparam -p log_archive_dest -v /oracle/<SID>oraarch/<SID>arch
+brspace -c force -f dbalter -a switchlog
+
+== notas ==
+1. tenga en cuenta que la ultima parte de la ruta hace parte del nombre del archive log no es un folder (/<SID>arch), esto agrega una marca a los archives generados en una instancia particular.
+2. en windows use una ruta de windows(<new_drive>:\oracle\<SID>\oraarch\<SID>arch)
+3. el segundo comando hace un switch manual del online redo log para que se genere un archivelog y verificar que todo quedara bien configurado. OJO este log contiene informacion y no debe ser borrado.
+4. en caso de multiples archivelog destinations use _1 y _2 al finalizar el parametro para especificar cual quiere cambiar (ejemplo brspace -c force -f dbparam -p log_archive_dest_1 -v /oracle/<SID>oraarch/<SID>arch)

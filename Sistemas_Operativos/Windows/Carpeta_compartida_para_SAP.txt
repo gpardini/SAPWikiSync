@@ -1,0 +1,7 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-28T13:22:40-05:00
+
+====== Carpeta compartida para SAP ======
+Created lunes 28 septiembre 2015
+

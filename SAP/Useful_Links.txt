@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-12-03T09:48:07-05:00
+
+====== Useful Links ======
+Created jueves 03 diciembre 2015
+
+https://help.sap.com/sltoolset → (Notes, Guides and Download) SPAM/SAINT, SWPM , SUM and nZDM

@@ -1,0 +1,31 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-24T23:10:49-05:00
+
+====== Automatic PGA ======
+Created martes 24 noviembre 2015
+
+**Enabling Automatic PGA**
+When implementing this feature, you should take particular care that the sort areas (specified by the SORT_AREA_SIZE and other PGA parameters) reserved up to now for each process do not become smaller. This would cause sorts that were previously executed in the memory to be executed on disk, which would make them considerably slower.
+To specify PGA_AGGREGATE_TARGET, observe the following general procedure:
+1. Calculate or estimate (empirically) a good start value.
+2. Monitor PGA_AGGREGATE_TARGET (under a representative system workload).
+3. Optimize PGA_AGGREGATE_TARGET.
+
+==== Calculate or Estimate a Good Start Value ====
+The following general recommendations apply to a standalone database server.
+* For OLTP systems:
+**PGA_AGGREGATE_TARGET = <Total physical memory> * 20%**
+* For data warehouse systems:
+**PGA_AGGREGATE_TARGET = <Total physical memory> * 40%**
+* Use the following formula as an additional guide value and lower limit:
+**pga_aggregate_target >= (SORT_AREA_SIZE + HASH_AREA_SIZE +...) * (**
+
+This formula is based on the assumption that not all shadow processes are simultaneously busy with larger sort tasks. Therefore, only the number of shadow processes divided by 10 should be used to calculate an approximation for PGA_AGGREGATE_TARGET. You can use the Oracle profile parameter processes to determine the number of shadow processes. This parameter determines the maximum number of Oracle shadow processes.
+Since the database server must have sufficient physical memory for the SGA, for the PGA and, if necessary, for other non-Oracle processes,
+PGA_AGGREGATE_TARGET is also restricted by the following formula:
+
+**SGA_MAX_SIZE + PGA_AGGREGATE_TARGET <= <phys. memory of DB server>**
+
+The implicit restriction that applies to this formula is that no paging should take place during the Oracle processes.
+For further information on Oracle recommendations for OLTP applications and Oracle recommendation for data warehouse applications, check SAP Note 124361 and SAP Note 632556, respectively.

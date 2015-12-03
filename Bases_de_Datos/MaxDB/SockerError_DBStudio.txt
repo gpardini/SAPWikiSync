@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-24T08:58:02-05:00
+
+====== SockerError DBStudio ======
+Created martes 24 noviembre 2015
+
+Se presenta un socket error al abrir DB Studio desde cualquier maquina, a pesar de que la base de datos funciona correctamente.
+esto es por problemas con el x_server de maxdb.
+ejecutar lo siguiente en el servidor(unix)
+
+=== commands ===
+cenprd# ./x_server start
+2015-11-24 08:56:48 21608     1 INF  12903          XServer on port 7200 started
+2015-11-24 08:56:48 21608     1 INF  13010            installation CEP  - path: /sapdb/CEP/db
+2015-11-24 08:56:49 21612     1 INF  12798 NISERVER NI support started.
+2015-11-24 08:56:50 21614     1 WNG  12453 NISSLSRV NISSL Init: SSL: Could not locate ticket file
+2015-11-24 08:56:50 21615     1 INF  12903          sdbgloballistener on port 7210 started
+cenprd# pwd
+/sapdb/programs/bin

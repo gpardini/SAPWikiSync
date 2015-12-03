@@ -1,0 +1,200 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-10-14T06:47:01-05:00
+
+====== Configurar Backup DUMPs ======
+Created miércoles 14 octubre 2015
+notas 1588316 y 1841993 
+
+==== Modificar el path de los SQLS ====
+//sp_dumpdb.sql  //[[./sp_dumpdb.sql]] 
+select @curr_logdev = '/backup/database/'+@sapdb_name+'_'+@current_ts+'.dmp'
+
+//sp_dumptrans.sql //[[./sp_dumptrans.sql]] 
+select @curr_logdev = '/backup/translog/'+@sapdb_name+'_trans_'+@current_ts+'.dmp'
+
+
+==== Cargar los StoredProcedures ====
+a nivel de os con el usuario syb<sid> ejecutar:
+isql -S<SID> -Usapsa -Dsaptools -P<password> -i /<path>/sp_dumpdb.sql
+isql -S<SID> -Usapsa -Dsaptools -P<password> -i /<path>/sp_dumptrans.sql
+isql -S<SID> -Usapsa -Dsaptools -P<password> -i /<path>/setup_logthreshold.sql
+
+**nota>**sapsa es un usuario standard administrador de sybase.
+**ejemplo Servicios Asociados DEV>**
+//isql -SSAD -Usapsa -Dsaptools -Pzxsa1254 -i /backup/sp_dumpdb.sql//
+//isql -SSAD -Usapsa -Dsaptools -Pzxsa1254 -i /backup/sp_dumptrans.sql//
+//isql -SSAD -Usapsa -Dsaptools -Pzxsa1254 -i /backup/setup_logthreshold.sql//
+isql -SSAF -Usapsa -Dsaptools -Pzxsa1254 -X -i /backup/crondumpdb.sql
+
+==== Asegurar que la DB saptools tenga espacio, si no extender ====
+agregar al archivo host el nombre del servidor
+//10.249.50.141	gsadev	gsadev.serviciosasociados.com//
+en la dbacockpit verificar el espacio de la DB saptools
+//dbacockpit>space>extendspace saptools//
+{{./pasted_image.png}}
+
+
+
+
+==== Configurar los siguientes parametros ====
+el parametro trunc cuando se encuentra en true es que cuando se hace comit en alguna transaccion estos comandos se borran para liberar espacio en el transacction log. Con este parametro encendido no se puede reconstruir la DB a partir de logs que no contienen todo el historial de transacciones aplicadas, antes de hacer backups debe ponerse en false.
+
+//isql -SSAD -Usapsa -DSAD -Pzxsa1254//
+//use master//
+//go//
+//sp_dboption SAD,'trunc',false//
+//go//
+//use SAD//
+//go//
+//checkpoint//
+//go//
+
+con sp_helpdb puedes verificar si el 'trunc' esta habilitado.
+//sp_helpdb SAD//
+
+==== Hacer primer full backup ====
+//isql -SSAF -Usapsa -DSAF -Pzxsa1254//
+//use saptools//
+//go//
+//sp_dumpdb SAF//
+//go//
+
+==== Hacer dump de transaction log ====
+//isql -SSAF -Usapsa -DSAF -Pzxsa1254 //
+//use saptools//
+//go//
+//sp_dumptrans SAF//
+//go//
+ 
+
+==== Configurar las tareas programadas con DBACockpit ====
+ver nota 1841993.
+
+== script dumptrans ==
+//exec saptools..sp_dumptrans SAF//
+//go//
+
+== script dumpdb ==
+//exec saptools..sp_dumpdb SAF//
+//go//
+
+
+==== Dataprotectro PRE and POST Scripts ====
+los pre y post script deben quedar en la ruta [[/opt/omni/lbin]] para que dataprotector los pueda tomar.
+el xSync.sh si queda en la carpeta backup, y se debe ejecutar la primera vez para que quede repetitivo.
+
+== PRE trans ==
+#!/bin/bash
+#must be run with user root
+#Pre Translog Backup Script
+
+## if lock exists
+if [ -f "/backup/translog/xsyncpre.lock" ]
+then
+echo xsyncpre.lock found.  xsyncpre running. If it is not running delete xsyncpre.lock
+exit 1
+fi
+
+## create lock
+date >/backup/translog/xsyncpre.lock
+
+## create log entrie
+echo "==========================" >>/backup/transBackup.log
+echo "`date +%d.%m.%Y_%H:%M:%S` : Pre Translog Script Executed" >>/backup/transBackup.log
+ls -l /backup/translogbak >>/backup/transBackup.log
+
+
+== POST trans ==
+#!/bin/bash
+#must be run with user root
+#POST Translog Backup Script
+echo return code: //$SMEXIT//
+
+## if backup success
+if [ $SMEXIT -eq 0 ]
+then
+echo backup successful delete logs
+
+rm -f  /backup/translogbak/SAF_trans_*
+
+## remove lock
+rm -r /backup/translog/xsyncpre.lock
+## create log entries
+echo "`date +%d.%m.%Y_%H:%M:%S` : Post Translog Script Executed" >>/backup/transBackup.log
+ls -l /backup/translogbak >>/backup/transBackup.log
+exit
+else
+echo  backup not successful nothing done
+## create log entries
+echo "`date +%d.%m.%Y_%H:%M:%S` : Post Translog Script Executed Backup Failed" >>/backup/transBackup.log
+## remove lock
+rm -r /backup/translog/xsyncpre.lock
+fi
+
+
+== XSync ==
+
+//#!/bin/bash//
+#must be run with user root
+if [ -f "/backup/translog/xsyncpre.lock" ]
+then
+echo xsyncpre.lock found.  xsyncpre running. If it is not running delete xsyncpre.lock
+at -f /backup/xSync.sh now + 5 minutes
+exit 1
+fi
+#create lock
+date >/backup/translog/xsyncpre.lock
+
+#rm -f xSync.log
+echo "=============">>xSync.log
+echo "`date +%d.%m.%Y_%H:%M:%S` : xSync.sh Starting">>xSync.log
+echo "ls -l /backup/translog" >>xSync.log
+ls -l /backup/translog >>xSync.log
+
+#move logs from translog to translogbak to backup logs
+mv -f ///backup/translog/SAF_trans_//* ///backup/translogbak///
+
+echo "ls -l /backup/translogbak" >>xSync.log
+ls -l /backup/translogbak >>xSync.log
+
+at -f /backup/xSync.sh now + 30 minutes
+rm -r /backup/translog/xsyncpre.lock
+
+
+== pre Data ==
+
+#!/bin/bash
+#must be run with user root
+#Pre Data Backup Script
+dumpname="/backup/database/SAF_2"
+if lsof | grep -q $dumpname; then
+echo "Database dump currently is running, please retry later"
+exit 1
+fi
+
+## create log entrie
+echo "==========================" >>/backup/dataBackup.log
+echo "`date +%d.%m.%Y_%H:%M:%S` : Pre Data Script Executed" >>/backup/dataBackup.log
+ls -l /backup/database >>/backup/dataBackup.log
+
+
+== postdata ==
+//#!/bin/bash//
+//#must be run with user root//
+#Post Data Backup Script
+//echo return code: $SMEXIT //
+//if [ $SMEXIT -eq 0 ]//
+//then//
+//echo backup successful delete datadumps//
+//rm -f  /backup/database/SAF_*//
+
+## create log entries
+echo "`date +%d.%m.%Y_%H:%M:%S` : Post Data Script Executed" >>/backup/dataBackup.log
+ls -l /backup/database >>/backup/dataBackup.log
+
+//exit//
+//else//
+//echo  backup not successful nothing done//
+echo "`date +%d.%m.%Y_%H:%M:%S` : Post Data Script Executed Backup Failed" >>/backup/dataBackup.log
+//fi//

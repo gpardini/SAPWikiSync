@@ -1,0 +1,39 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T09:46:51-05:00
+
+====== MaxDB ======
+Created viernes 25 septiembre 2015
+
+==== <basicos> ====
+estado de la base de datos:
+//db_state//
+subir la base de datos:
+//db_online//
+poner la base de datos en modo admin:
+//db_admin//
+ver el estado de la base de datos:
+//db_state//
+
+==== <login> ====
+//dbmcli -d EDP -u control,zxsa1254//
+//dbmcli -d STP -u control,zxsa1254//
+
+==== <Montar LOGS en base de datos standby> ====
+//db_admin//
+//util_connect//
+//backup_restore saparch LOG <numero_log>//
+
+
+==== <para ver el ultimo log cargado> ====
+db_restartinfo
+aca el usedlogpage se compara con los logs producidos en productivo.
+
+
+===== Notas Importantes: =====
+[[./1111426 - Database parameter check for SAP MaxDBliveCache.pdf]] 
+[[./1139904 - FAQ SAP MaxDBliveCache database parameters.pdf]] 
+[[./1346964 - SAP MaxDB 7-9 database parameter recommendations.pdf]] 
+
+===== PDFs Utiles =====
+[[./Copia Heterogenea MaxDB a MSSQL dataprotector.pdf]] 

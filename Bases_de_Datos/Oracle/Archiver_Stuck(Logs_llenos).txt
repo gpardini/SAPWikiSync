@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-23T19:58:55-05:00
+
+====== Archiver Stuck(Logs llenos) ======
+Created lunes 23 noviembre 2015
+
+Es una situacion en la que el archiver background process (ARC0) no puede escribir el contenido del online redolog al disco y el online redolog que debe ser copiado necesita ser sobreescribido.
+
+cuando esto pasa se ve por lo general un disco o filesystem(unix) lleno a nivel de sistema operativo y a nivel de sap todo se queda congelado asi la base de datos se encuentre arriba.
+
+para solucionarlo debe abrir espacio en la unidad para que se puedan seguir escribiendo los archivelogs o cambiar el destination de archives a una unidad con espacio y cuando se resuleva el inconveniente volverla a reconfigurar.
+
+para que los archives sean reespaldados debe ejecutar el brarchive 2 veces>

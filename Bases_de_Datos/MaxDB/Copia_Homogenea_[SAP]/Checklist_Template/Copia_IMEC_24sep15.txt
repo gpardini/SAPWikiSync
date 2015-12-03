@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T10:44:37-05:00
+
+====== Copia IMEC 24sep15 ======
+Created viernes 25 septiembre 2015
+
+===== Ticket: 2000034816 =====
+
+===== Checklist Previo al restore: =====
+[*] Asegurar por escrito que el cliente se haga responsable de los desarrollos que pueda tener en los mandantes que se borren con el proceso de copia.
+[*] Indicar al cliente que la copia suele tomar 48 horas puede tomar mas tiempo si se presentan inconvenientes durante le procedimiento.
+[*] Verificar que las versiones de la base de datos sean las mismas.
+[*] Verificar que la base de datos contenga el espacio necesarios.
+[*] Verificar que el Kernel se encuentre en la misma version en el destino y el origen.
+[x] Tomar pantallazo de la configuracion de los mandantes en la SCC4.
+[x] Si hay mandante de DESARROLLO en el sistema consultar el consecutivo de los transportes.
+
+
+

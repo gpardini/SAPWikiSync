@@ -1,0 +1,31 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T09:32:32-05:00
+
+====== Carpetas Compartidas ======
+Created viernes 25 septiembre 2015
+
+===== Carpeta compartida en HPUX =====
+esto aplica para cuando las carpetas estan siendo compartidas desde un HPUX y consumidas desde un HPUX, podria funcionar para otros escenarios pero no lo e probado aun.
+
+=== verificar unidades compartidas en el servidor ===
+//showmount -e localhost//
+
+==== montar unidad ====
+//mount ip.del.server:/share /directorio//
+
+=== ejemplo ===
+
+== microplast: ==
+//mount micdev:/usr/sap/trans /usr/sap/trans//
+#Hacer el cambio permanente
+agregar la siguiente linea a /etc/fstab
+##ejemplo microplast
+micdev:/usr/sap/trans /usr/sap/trans nfs defaults,rw,intr 0 0
+ditscmd://usr/sap/trans /usr/sap/trans nfs noac
+
+== Licores Cundinamarca(Linux): ==
+mount CUNDISRV205:/usr/sap/trans /usr/sap/trans
+#Hacer el cambio permanente
+CUNDISRV205:/usr/sap/trans /usr/sap/trans nfs defaults,rw,intr 0 0
+

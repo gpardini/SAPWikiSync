@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T10:47:35-05:00
+
+====== Checklist Template ======
+Created viernes 25 septiembre 2015
+
+===== Ticket:XXXXXXX =====
+
+===== Checklist Previo al restore: =====
+[ ] Que el cliente se haga responsable de los desarrollos que pueda tener en los mandantes que se borren con el proceso de copia e indicar al cliente que el proceso suele tomar 48 horas pero que puede tomar mas tiempo si se presentan inconvenientes durante le procedimiento.
+[ ] Verificar que las versiones de la base de datos sean las mismas.
+[ ] Verificar que la base de datos contenga el espacio necesarios.
+[ ] Verificar que el Kernel se encuentre en la misma version en el destino y el origen.
+[ ] Tomar pantallazo de la configuracion de los mandantes en la SCC4.
+[ ] Si hay mandante de DESARROLLO en el sistema consultar el consecutivo de los transportes.
+
+===== Checklist Posterior al restore: =====
+

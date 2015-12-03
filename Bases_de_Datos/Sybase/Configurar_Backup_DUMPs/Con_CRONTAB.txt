@@ -1,0 +1,31 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-24T23:22:12-05:00
+
+====== Con CRONTAB ======
+Created martes 24 noviembre 2015
+
+use el comando crontab -e en el usuario <SID>adm para programar las tareas usando vi.
+este archivo debe contener las siguientes entradas, (**OJO ESTE ES UN EJEMPLO DE SAF<Prodcutivo servicios asociados> QUE YA TIENE LOS STORE PROCEDURES**) es LINUX REDHAT
+
+#ejecucion diaria de dump_db 11pm.
+00 23 * * * . /home/safadm/.profile; /sybase/SAF/OCS-15_0/bin/isql -SSAF -Usapsa -Dsaptools -Pzxsa1254 -i /backup/crondumpdb.sql >> /backup/database/cron.log
+#ejecucion cada 2horas de 6am a 10pm de dump trans.
+00 6,8,10,12,14,16,18,20,22 * * * . /home/safadm/.profile; /sybase/SAF/OCS-15_0/bin/isql -SSAF -Usapsa -Dsaptools -Pzxsa1254 -i /backup/crondumptrans.sql >> /backup/translog/cron.log
+
+
+los SQL utilizados pueden ser modificados a su antojo en este caso usan los stored procedures:
+
+==== crondumptrans.sql ====
+use saptools
+go
+sp_dumptrans SAF
+go
+
+==== crondumpdb.sql ====
+use saptools
+go
+sp_dumpdb SAF
+go
+
+en casos de emergencia puede cambiar estos SQL para que no usen el stored procedure y que pongan los backups en otro volumen si el predeterminado se encuentra lleno usando el comando database dump standard de SYBASE.

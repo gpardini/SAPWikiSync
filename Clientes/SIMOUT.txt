@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-28T10:47:01-05:00
+
+====== SIMOUT ======
+Created lunes 28 septiembre 2015
+
+===== Contacto Principal =====
+**Nombre>** Luz Helena Sanchez
+**Skype>** luz.helena.sanchez.conde
+**Ciudad>** Cali
+**Cargo>** Coord. Contratación y Compensación
+**Cel>** 317 731 4779
+**Tel>** 665 4687 Ext. 152
+**Mail>** Isanchez@simout.com
+
+
+===== Seguimiento Septiembre =====
+[*] Recomedaciones informe de Gestion de Septiembre!
+	[*] Verificacion tickets del mes.
+	[*] Verificacion del EWA
+	[*] Verificacion de copias de respaldo del mes.
+	[*] Verificacion de usuarios durante el mes.
+[*] Reunion de seguimiento.
+[*] Acta Reunion.

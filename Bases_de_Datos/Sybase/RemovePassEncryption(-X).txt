@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-11-24T13:26:29-05:00
+
+====== RemovePassEncryption(-X) ======
+Created martes 24 noviembre 2015
+
+GSAPRD:safadm 54> isql -SSAF -Usa -DSAF -Pzxsa1254 -X
+1> sp_configure 'net password encryption reqd',0
+2> go

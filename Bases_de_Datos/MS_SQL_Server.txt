@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T09:47:53-05:00
+
+====== MS SQL Server ======
+Created viernes 25 septiembre 2015
+
+
+
+====== Referencias: ======
+
+=== StandBy LogShipping setup ===
+en este link hay una excelente guia para realizar la configuracion en cuestion:
+https://www.mssqltips.com/sqlservertip/2301/step-by-step-sql-server-log-shipping/

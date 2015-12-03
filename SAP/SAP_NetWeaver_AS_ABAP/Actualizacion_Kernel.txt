@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-28T10:03:04-05:00
+
+====== Actualizacion Kernel ======
+Created lunes 28 septiembre 2015
+
+1. verificar OS, DB y version actual del Kernel para decidir cual descargar
+	a. {{./pasted_image.png?width=431}}
+	b. {{./pasted_image001.png?height=312}}
+	c. {{./pasted_image002.png}}
+	d. {{./pasted_image003.png}} 
+2. la descarga se hace en el siguiente vinculo https://support.sap.com/software/patches.html 
+	a. aqui las opciones **Additional Components>" SAP Kernel">SAP KERNEL 64-BIT UNICODE**
+	b. aqui seleccionar el release pertinente. Para las imagenes de ejemplo seria "**Windows on x64 64bit**"
+3. Descargar la parte Database dependant seleccionando del menu la DB correspondiente, en este caso MaxDB.
+	a. {{./pasted_image004.png}}

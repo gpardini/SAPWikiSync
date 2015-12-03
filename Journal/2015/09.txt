@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-28T10:40:41-05:00
+
+====== septiembre 2015 ======
+
+===== OT: =====
+Listas.
+
+===== Recomendaciones informes de gestion =====
+[*] GEMR(Lagosur)>Listo!
+[*] HR Solutions (Fresenius)>Listo!
+[*] IMEC>Listo!
+[*] Intergrupo(Servicios Asociados)>Listo!
+[*] SIMOUT>Listo!
+
+
+===== Reuniones de seguimiento mensual =====
+[*] [[Clientes:GEMR(Lagosur)]] >16/09/2015 10:30>Reunion Realizada
+[x] HR Solutions (Fresenius)>22/09/2015 11:00>no contesto
+[x] IMEC>23/09/2015 10:00>Se contacto al usuario pero nunca pudo realizar la reunion.
+[x] Intergrupo(Servicios Asociados)>No contesto
+[*] [[Clientes:SIMOUT]] >15/09/2015>Reunion Realizada.

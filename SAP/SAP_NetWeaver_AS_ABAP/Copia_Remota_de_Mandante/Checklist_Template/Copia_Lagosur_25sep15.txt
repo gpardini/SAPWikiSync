@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-09-25T15:26:39-05:00
+
+====== Copia Lagosur 25sep15 ======
+Created viernes 25 septiembre 2015
+
+===== Ticket:2000035166 =====
+
+[*] Informar al cliente de los riesgos de la copia.
+[*] el cliente debe hacerse responsable de la perdida de informacion que pueda causarse por la copia.
+[*] Configurar la RFC entre el origen y el destino.
+[*] Ejecutar el RFC System Comparison y asegurar que pase sin problemas.
+[*] Programar la ejecucion de la copia.
+[*] Solicitar backup de logs mas frecuentes, para asegurar que no se llene el disco.
+[*] Estar pendiente que la copia termine.
